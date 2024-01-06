@@ -1,12 +1,12 @@
 import unittest
 
-import part_one
+import day_five
 
 
 class MyTestCase(unittest.TestCase):
     def test_part_one(self):
-        expected = 13
-        actual = part_one.part_one("input.txt")
+        expected = 35
+        actual = day_five.part_one(input_file_path="input.txt")
         self.assertEqual(expected, actual)
 
 
