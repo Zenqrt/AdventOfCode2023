@@ -1,6 +1,3 @@
-from typing import Dict
-
-
 def parse_string_into_ints(string: str) -> list[int]:
     number_list = []
     number_strings = string.strip().split(' ')
@@ -53,26 +50,6 @@ def get_destination_number(source_number: int, map_entries: list[tuple[int, int,
 
 
 def part_one(input_file_path: str) -> int:
-    # notes:
-    # - keep track of location numbers to compare at the end
-    # - what kind of map should not be important, just go in order
-    # - seed is the source, soil is the destination
-    #
-    # parse ALL maps into arrays of tuples of destination range start, source range start, and range length
-    # put each map into an array (ordered)
-    # XXXX (very inefficient) convert array for each map into array of all destination and source numbers (after calculating with range length)
-    #
-    # for each seed number:
-    #   get destination number from first map using parameters of source number (seed number first time) and map entries
-    #   using that destination number, repeat previous task above
-    #   repeat process until all maps have been gone through
-    #   after process is over, save final destination number in an array
-    #
-    # compare each number in array to find the lowest
-    # return that
-
-    # map_destinations: list[dict[int, int]] = []
-
     map_entries = []
 
     with open(input_file_path, 'r') as file:
@@ -83,8 +60,6 @@ def part_one(input_file_path: str) -> int:
             if "map" in line:
                 map_entry = parse_map(lines, index + 1)
                 map_entries.append(map_entry)
-                # destinations_dict = get_destinations_dict(map_entries)
-                # map_destinations.append(destinations_dict)
 
     location_numbers: list[int] = []
 
