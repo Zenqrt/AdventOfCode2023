@@ -46,75 +46,49 @@ fn retrieve_seed_numbers(lines: &Vec<&str>) -> Vec<u32> {
 }
 
 fn retrieve_categories(lines: &Vec<&str>) -> Vec<Vec<MapEntry>> {
-    let mut categories: Vec<Vec<MapEntry>> = Vec::new();
-
-    for (index, line) in lines.iter().enumerate() {
-        if line.contains("map") {
-            let map_entry = parse_map_data(&lines, index + 1);
-            categories.push(map_entry);
-        }
-    }
-
-    return categories;
+    lines
+        .iter()
+        .enumerate()
+        .filter(|(_, line)| line.contains("map"))
+        .map(|(index, _)| parse_map_data(&lines, index + 1))
+        .collect()
 }
 
 fn parse_string_to_numbers(line: &str) -> Vec<u32> {
-    let mut number_list: Vec<u32> = Vec::new();
-    let number_strings = line.trim().split(" ");
-
-    for string in number_strings {
-        if string == "" {
-            continue;
-        }
-
-        let number = string
-            .parse()
-            .expect(&format!("String should be a number, got {string}"));
-
-        number_list.push(number);
-    }
-
-    return number_list;
+    line.trim()
+        .split_whitespace()
+        .filter_map(|string| string.parse().ok())
+        .collect()
 }
 
 fn parse_map_data(lines: &Vec<&str>, initial_index: usize) -> Vec<MapEntry> {
-    let mut entries: Vec<MapEntry> = Vec::new();
-
-    for index in initial_index..lines.len() {
-        let line = lines[index];
-
-        if line == "" {
-            break;
-        }
-
-        let numbers = parse_string_to_numbers(line);
-        let map_entry = MapEntry {
-            destination: numbers[0],
-            source: numbers[1],
-            range_length: numbers[2],
-        };
-        entries.push(map_entry);
-    }
-
-    return entries;
+    lines[initial_index..]
+        .iter()
+        .take_while(|line| !line.is_empty())
+        .map(|line| {
+            let numbers = parse_string_to_numbers(line);
+            MapEntry {
+                destination: numbers[0],
+                source: numbers[1],
+                range_length: numbers[2],
+            }
+        })
+        .collect()
 }
 
 fn retrieve_location(seed_number: u32, categories: &Vec<Vec<MapEntry>>) -> u32 {
-    let mut destination = seed_number;
-
-    for map_entries in categories {
-        destination = get_destination_number(destination, map_entries);
-    }
-
-    return destination;
+    categories.iter().fold(seed_number, |dest, map_entries| {
+        get_destination_number(dest, map_entries)
+    })
 }
 
 fn get_destination_number(source: u32, map_entries: &Vec<MapEntry>) -> u32 {
-    for map_entry in map_entries {
-        if source > map_entry.source && source < map_entry.source + map_entry.range_length {
-            return map_entry.destination + (source - map_entry.source);
-        }
-    }
-
-    return source;
+    map_entries
+        .iter()
+        .find(|map_entry| {
+            source > map_entry.source && source < map_entry.source + map_entry.range_length
+        })
+        .map_or(source, |map_entry| {
+            map_entry.destination + (source - map_entry.source)
+        })
 }
