@@ -1,6 +1,6 @@
 import unittest
 
-import day_five
+import part_one
 
 
 class MyTestCase(unittest.TestCase):
