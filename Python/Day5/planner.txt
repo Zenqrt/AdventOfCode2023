@@ -1,0 +1,15 @@
+notes:
+- keep track of location numbers to compare at the end
+- what kind of map should not be important, just go in order
+- seed is the source, soil is the destination
+
+Procedure:
+* parse ALL maps into arrays of tuples of destination range start, source range start, and range length
+* put each map into an array (ordered)
+* for each seed number:
+    * get destination number from first map using parameters of source number (seed number first time) and map entries
+    * using that destination number, repeat previous task above
+    * repeat process until all maps have been gone through
+    * after process is over, save final destination number in an array
+* compare each number in array to find the lowest
+* return that
