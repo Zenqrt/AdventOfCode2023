@@ -2,7 +2,9 @@ def calculate_distance(hold_time: int, race_time: int) -> int:
     speed = hold_time
     remaining_time = race_time - hold_time
 
-    return speed * remaining_time
+    distance = speed * remaining_time
+    print(f"Distance: {distance}")
+    return distance
 
 
 def parse_numbers(line: str) -> list[int]:
