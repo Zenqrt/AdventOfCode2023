@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b49b290-475e-42f3-92f4-a2af5ba05f53" name="Changes" comment="Day 3 part one" />
+    <list default="true" id="2b49b290-475e-42f3-92f4-a2af5ba05f53" name="Changes" comment="Day 3 part one">
+      <change beforePath="$PROJECT_DIR$/../../Rust/day_05/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Rust/day_05/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Rust/day_05/src/res/input.txt" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +21,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -35,6 +38,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/craft/Documents/Development/GitHub/AdventOfCode2023/Python/day_04",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
